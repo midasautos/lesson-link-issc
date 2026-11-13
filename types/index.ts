@@ -4,7 +4,7 @@ import type {
     Polygon 
 } from "geojson";
 
-const severityValue = {
+export const severityValue = {
     critical: "destructive",
     major: "warning",
     moderate: "secondary",

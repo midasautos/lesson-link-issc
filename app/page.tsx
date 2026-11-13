@@ -15,8 +15,8 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 justify-items-stretch gap-6">
-          <div className="min-w-0 space-y-6 col-span-2">
+        <div className="grid grid-cols-1 xl:grid-cols-3 justify-items-stretch gap-6">
+          <div className="min-w-0 space-y-6 col-span-1 xl:col-span-2">
               <SiteOverviewCard />
               <RecentIncidentsCard />
           </div>

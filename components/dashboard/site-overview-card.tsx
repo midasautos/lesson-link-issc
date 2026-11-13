@@ -75,7 +75,6 @@ export function SiteOverviewCard() {
             <CardContent className="p-4 pt-0">
                 <div className="relative z-0 h-[420px] overflow-hidden rounded-lg border">
                     <SiteMapView
-                        key={`${site.center.lat},${site.center.lng},${site.zoom}`}
                         site={site}
                         incidents={todayIncidents}
                         onReady={setMap}
@@ -113,18 +112,18 @@ function LegendRow({
 }) {
     return (
         <div className="flex items-center gap-2">
-        <span
-            className={dot ? "h-2.5 w-2.5 rounded-full" : "h-2.5 w-4 rounded-sm border-2"}
-            style={
-                dot
-                    ? { background: color }
-                    : {
-                        borderColor: color,
-                        background: `${color}33`,
-                        borderStyle: dashed ? "dashed" : "solid",
-                    }
-            }
-        />
+            <span
+                className={dot ? "h-2.5 w-2.5 rounded-full" : "h-2.5 w-4 rounded-sm border-2"}
+                style={
+                    dot
+                        ? { background: color }
+                        : {
+                            borderColor: color,
+                            background: `${color}33`,
+                            borderStyle: dashed ? "dashed" : "solid",
+                        }
+                }
+            />
             {label}
         </div>
     );

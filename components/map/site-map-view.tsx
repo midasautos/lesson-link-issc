@@ -2,9 +2,9 @@
 
 import "leaflet/dist/leaflet.css";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import type { Map as LeafletMap } from "leaflet";
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, useMap } from "react-leaflet";
 
 import { Basemap, MapReady } from "@/components/map/map-base";
 import { ZoneLayer } from "@/components/map/zone-layer";
@@ -17,6 +17,16 @@ interface Props {
     site: SiteConfig;
     incidents: Incident[];
     onReady?: (map: LeafletMap) => void;
+}
+
+export function SiteViewSync({ lat, lng, zoom }: { lat: number; lng: number; zoom: number }) {
+    const map = useMap();
+
+    useEffect(() => {
+        map.setView([lat, lng], zoom);
+    }, [map, lat, lng, zoom]);
+
+    return null;
 }
 
 export default function SiteMapView({ site, incidents, onReady }: Props) {
@@ -72,6 +82,7 @@ export default function SiteMapView({ site, incidents, onReady }: Props) {
                 </Marker>
             ))}
 
+            <SiteViewSync lat={site.center.lat} lng={site.center.lng} zoom={site.zoom} />
             <MapReady onReady={onReady} />
         </MapContainer>
     );
