@@ -27,6 +27,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ZoneLevelBadge } from "../dashboard/badges";
 import {
     approxAreaM2,
     boundsOf,
@@ -630,9 +631,7 @@ function EditorInner({
                                                 title="Click to switch level"
                                                 onClick={() => toggleLevel(z.properties.id)}
                                             >
-                                                <Badge variant={z.properties.level === "critical" ? "critical" : "review"}>
-                                                    {style.label}
-                                                </Badge>
+                                                <ZoneLevelBadge level={z.properties.level} />
                                             </button>
                                             <Button
                                                 variant="ghost"

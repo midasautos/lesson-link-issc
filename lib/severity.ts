@@ -3,12 +3,14 @@ import type { Severity, ZoneLevel } from "@/types";
 export const SEVERITY_COLORS: Record<Severity, string> = {
     critical: "#ef4444",
     major: "#f59e0b",
+    moderate: "#e7cc01",
     minor: "#22c55e",
 };
 
 export const SEVERITY_LABEL: Record<Severity, string> = {
     critical: "Critical",
     major: "Major",
+    moderate: "Moderate",
     minor: "Minor",
 };
 

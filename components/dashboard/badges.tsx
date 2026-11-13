@@ -13,10 +13,10 @@ const SEVERITY_CLASS: Record<Severity, string> = {
 export function SeverityBadge({ severity }: { severity: Severity }) {
     return (
         <Badge
-        variant="outline"
-        className={cn("min-w-16 justify-center border-transparent", SEVERITY_CLASS[severity])}
+            variant="outline"
+            className={cn("min-w-16 justify-center border-transparent", SEVERITY_CLASS[severity])}
         >
-        {SEVERITY_LABEL[severity]}
+            {SEVERITY_LABEL[severity]}
         </Badge>
     );
 }
