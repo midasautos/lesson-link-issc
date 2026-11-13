@@ -8,7 +8,7 @@ const severityValue = {
     critical: "destructive",
     major: "warning",
     moderate: "secondary",
-    minor: 
+    minor: "outline"
 } as const;
 
 export type Severity = keyof typeof severityValue;
