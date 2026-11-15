@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
     ArrowRight,
+    BookOpen,
     FileText,
     Map as MapIcon,
     Settings,
@@ -15,46 +16,48 @@ interface Action {
     title: string;
     description: string;
     icon: LucideIcon;
-    /** kosong = fitur belum dibuat */
-    href?: string;
+    href: string;
 }
 
 const ACTIONS: Action[] = [
     {
-        title: "Report Incident",
-        description: "Create a new incident report",
+        title: "Incident Monitoring",
+        description: "Review & tangani prediksi AI",
         icon: TriangleAlert,
+        href: "/incidents",
     },
     {
-        title: "View Full Map",
-        description: "Explore all areas and incidents",
+        title: "View & Edit Map",
+        description: "Kelola zona kritis & koordinat",
         icon: MapIcon,
+        href: "/map",
     },
     {
-        title: "Generate Report",
-        description: "Download safety reports",
+        title: "Field Reports",
+        description: "Laporan personel & AI triage",
         icon: FileText,
+        href: "/reports",
     },
     {
-        title: "System Settings",
-        description: "Manage preferences and alerts",
-        icon: Settings,
-        href: "/settings/site",
+        title: "Manual Book SOP",
+        description: "Panduan standar penanganan",
+        icon: BookOpen,
+        href: "/manual-book",
     },
 ];
 
 const tileClass =
-    "group flex flex-col rounded-xl border bg-white p-4 text-left transition hover:border-primary/40 hover:bg-accent/60 hover:shadow-sm";
+    "group flex flex-col rounded-xl border bg-white p-4 text-left transition hover:border-primary/40 hover:bg-accent/60 hover:shadow-sm dark:bg-slate-900";
 
 function Tile({ title, description, icon: Icon }: Action) {
     return (
         <>
-        <div className="flex items-start justify-between">
-            <Icon className="h-7 w-7 text-primary" strokeWidth={1.75} />
-            <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-0.5" />
-        </div>
-        <div className="mt-4 text-sm font-semibold">{title}</div>
-        <div className="text-xs text-muted-foreground">{description}</div>
+            <div className="flex items-start justify-between">
+                <Icon className="h-7 w-7 text-primary" strokeWidth={1.75} />
+                <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-0.5" />
+            </div>
+            <div className="mt-4 text-sm font-semibold">{title}</div>
+            <div className="text-xs text-muted-foreground">{description}</div>
         </>
     );
 }
@@ -69,22 +72,11 @@ export function QuickActionsCard() {
                 </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-3 p-4 pt-0 sm:grid-cols-2">
-                {ACTIONS.map((a) =>
-                    a.href ? (
-                        <Link key={a.title} href={a.href} className={tileClass}>
-                            <Tile {...a} />
-                        </Link>
-                    ) : (
-                        <button
-                            key={a.title}
-                            type="button"
-                            title="Coming soon"
-                            className={tileClass}
-                        >
-                            <Tile {...a} />
-                        </button>
-                    ),
-                )}
+                {ACTIONS.map((a) => (
+                    <Link key={a.title} href={a.href} className={tileClass}>
+                        <Tile {...a} />
+                    </Link>
+                ))}
             </CardContent>
         </Card>
     );

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+    BookOpen,
     FileText,
     LayoutDashboard,
     Map as MapIcon,
@@ -17,28 +18,28 @@ interface NavItem {
     label: string;
     href: string;
     icon: LucideIcon;
-    /** halaman belum dibuat → tampil disabled */
     soon?: boolean;
 }
 
 const NAV: NavItem[] = [
     { label: "Dashboard", href: "/", icon: LayoutDashboard },
-    { label: "Incidents", href: "/incidents", icon: TriangleAlert, soon: true },
-    { label: "Map", href: "/map", icon: MapIcon, soon: true },
-    { label: "Reports", href: "/reports", icon: FileText, soon: true },
-    { label: "Settings", href: "/settings/site", icon: Settings },
+    { label: "Incidents", href: "/incidents", icon: TriangleAlert },
+    { label: "Reports", href: "/reports", icon: FileText },
+    { label: "Map", href: "/map", icon: MapIcon },
+    { label: "Manual Book", href: "/manual-book", icon: BookOpen },
+    { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 flex-col justify-between border-r bg-white/70 p-4 lg:flex">
+        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 flex-col justify-between border-r bg-white/70 p-4 lg:flex dark:bg-slate-950/70">
             <nav className="space-y-1">
                 {NAV.map(({ label, href, icon: Icon, soon }) => {
-                const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+                    const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-                if (soon) {
+                    if (soon) {
                         return (
                             <div
                                 key={label}
@@ -57,16 +58,16 @@ export function Sidebar() {
 
                     return (
                         <Link
-                        key={label}
-                        href={href}
-                        className={cn(
-                            "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
-                            active
-                            ? "bg-primary text-primary-foreground shadow"
-                            : "text-foreground/80 hover:bg-accent hover:text-accent-foreground",
-                        )}
+                            key={label}
+                            href={href}
+                            className={cn(
+                                "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                                active
+                                    ? "bg-primary text-primary-foreground shadow"
+                                    : "text-foreground/80 hover:bg-accent hover:text-accent-foreground",
+                            )}
                         >
-                        <Icon className="h-5 w-5" />
+                            <Icon className="h-5 w-5" />
                             {label}
                         </Link>
                     );

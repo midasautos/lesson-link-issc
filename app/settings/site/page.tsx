@@ -1,7 +1,5 @@
-import { SiteEditor } from "@/components/settings/site-editor";
+import { redirect } from "next/navigation";
 
-export const metadata = { title: "Site Setup — LessonLink" };
-
-export default function SiteSetupPage() {
-    return <SiteEditor />;
+export default function SiteSettingsRedirect() {
+    redirect("/map");
 }

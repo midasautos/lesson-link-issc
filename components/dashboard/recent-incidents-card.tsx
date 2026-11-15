@@ -25,7 +25,7 @@ export function RecentIncidentsCard() {
                     Recent Incidents
                 </CardTitle>
                 <Link
-                    href="#"
+                    href="/incidents"
                     className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
                 >
                     View All <ArrowRight className="h-3.5 w-3.5" />
