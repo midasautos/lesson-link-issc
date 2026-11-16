@@ -6,7 +6,7 @@ export const defaultManualBooks: ManualBookItem[] = [
         title: "Penanganan Kebakaran Area Kritis & Tangki Bahan Bakar",
         hazardType: "Fire / Kebakaran",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         summary: "Prosedur darurat tingkat 1 saat terjadi kobaran api aktif pada area berisiko tinggi seperti Tank Farm atau Utilitas.",
         steps: [
             {
@@ -203,7 +203,7 @@ export const defaultManualBooks: ManualBookItem[] = [
         title: "Penanganan Penyusupan & Pelanggaran Batas Perimeter Pabrik",
         hazardType: "Unauthorized Intrusion / Penyusup",
         category: "man_made",
-        severity: "critical",
+        severity: "catastrophic",
         summary: "Prosedur penangkapan dan netralisasi orang tak dikenal yang melompati pagar atau memasuki zona terbatas.",
         steps: [
             {
@@ -212,7 +212,7 @@ export const defaultManualBooks: ManualBookItem[] = [
                 instructions: [
                     "Operator CCTV mengunci target dan mengarahkan patroli darat via radio HT.",
                     "Kunci semua pintu akses elektronik (access door) menuju gedung produksi.",
-                    "Kerahkan tim patroli bergerak (K9 atau Quick Reaction Team) ke koordinat target.",
+                    "Kerahkan tim patroli bergerak (Quick Reaction Team) ke koordinat target.",
                 ],
             },
             {
@@ -243,7 +243,7 @@ export const defaultManualBooks: ManualBookItem[] = [
         title: "Penanganan Tumpahan Bahan Kimia Berbahaya (B3) di Jalur Produksi",
         hazardType: "Chemical Spill / Kebocoran B3",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         summary: "Penanganan ceceran zat asam atau pelarut korosif pada lini produksi utama.",
         steps: [
             {
@@ -301,18 +301,40 @@ export const defaultManualBooks: ManualBookItem[] = [
                     "Lakukan penggantian suku cadang atau penyelarasan (alignment) poros motor.",
                 ],
             },
-            {
-                phase: "Tahap 3: Uji Coba Tanpa Beban",
-                title: "Commissioning & Pencabutan LOTO",
-                instructions: [
-                    "Jalankan mesin uji coba mode manual tanpa beban selama 10 menit.",
-                    "Lepas gembok LOTO dan verifikasi tanda tangan Foreman sebelum produksi jalan.",
-                ],
-            },
         ],
         equipment: ["LOTO Kit (Padlocks & Tags)", "Vibration Analyzer Tool", "Toolkit Mekanik Industri"],
         responsibleRoles: ["Maintenance Technician", "Mechanical Supervisor", "Safety Officer"],
         estimatedResolutionTime: "1 - 2 Jam",
         lastUpdated: "2026-11-01",
+    },
+    {
+        id: "SOP-OPE-NEAR-01",
+        title: "Penanganan Ceceran Cairan Ringan & Housekeeping Koridor",
+        hazardType: "Housekeeping & Near-Miss",
+        category: "operational",
+        severity: "insignificant",
+        summary: "Tindakan cepat penanganan ceceran air/minuman non-kimia dan perapihan kabel di jalur pejalan kaki.",
+        steps: [
+            {
+                phase: "Tahap 1: Pemasangan Tanda Peringatan",
+                title: "Pasang Wet Floor Sign",
+                instructions: [
+                    "Letakkan papan kerucut 'Lantai Licin / Wet Floor' tepat di dekat genangan.",
+                    "Arahkan pejalan kaki sementara melewati sisi koridor yang kering.",
+                ],
+            },
+            {
+                phase: "Tahap 2: Pembersihan",
+                title: "Pel Kering dan Desinfeksi Cepat",
+                instructions: [
+                    "Gunakan kain pel micro-fiber bersih untuk menyerap cairan hingga kering kesat.",
+                    "Singkirkan kabel atau perkakas yang melintang ke dalam ducting kabel.",
+                ],
+            },
+        ],
+        equipment: ["Wet Floor Signboard", "Mop Set & Microfiber Cloth"],
+        responsibleRoles: ["Housekeeping Staff", "Floor Safety Patrol"],
+        estimatedResolutionTime: "5 - 10 Menit",
+        lastUpdated: "2026-11-14",
     },
 ];

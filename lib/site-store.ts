@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { DEFAULT_SITE } from "@/data/dummy";
 import type { SiteConfig } from "@/types";
 
-const KEY = "lessonlink:site-config:v1";
+const KEY = "lessonlink:site-config:v3";
 const EVENT = "lessonlink:site-updated";
 
 function isValidSite(x: unknown): x is SiteConfig {

@@ -52,7 +52,7 @@ export function ManualBookView() {
     }, [queryId]);
 
     useEffect(() => {
-        if (querySeverity && ["critical", "major", "moderate", "minor"].includes(querySeverity)) {
+        if (querySeverity && ["catastrophic", "major", "moderate", "minor", "insignificant"].includes(querySeverity)) {
             setSelectedSeverity(querySeverity as Severity);
         }
     }, [querySeverity]);
@@ -173,7 +173,7 @@ export function ManualBookView() {
                         >
                             Semua Level
                         </Button>
-                        {(["critical", "major", "moderate", "minor"] as const).map((sev) => {
+                        {(["catastrophic", "major", "moderate", "minor", "insignificant"] as const).map((sev) => {
                             const conf = settings.severityConfigs?.[sev];
                             const label = conf?.label || sev.toUpperCase();
                             const active = selectedSeverity === sev;

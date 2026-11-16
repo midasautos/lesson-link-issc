@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Incident, IncidentStatus } from "@/types";
 
-const KEY = "lessonlink:incidents:v2";
+const KEY = "lessonlink:incidents:v3";
 const EVENT = "lessonlink:incidents-updated";
 
 export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-001",
         time: "14:25 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gerbang Utama (Main Gate)",
         type: "Protester / Demonstrasi",
         category: "man_made",
@@ -31,11 +31,11 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-002",
         time: "13:50 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Tank Farm (Tangki T-04)",
         type: "Fire / Kebakaran",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         description: "Thermal sensor mendeteksi lonjakan temperatur drastis (220°C) disertai anomali asap di sekitar katup pipa.",
         status: "in_progress",
         lat: -6.2925,
@@ -52,7 +52,7 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-003",
         time: "12:15 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Warehouse Barat (Loading Dock 2)",
         type: "Flood / Banjir",
         category: "natural_hazard",
@@ -73,7 +73,7 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-004",
         time: "11:30 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Pagar Batas Sektor Timur",
         type: "Damage Property / Vandalisme",
         category: "man_made",
@@ -94,11 +94,11 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-005",
         time: "10:05 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gedung Produksi A",
         type: "Chemical Spill / B3",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         description: "Gas detector mendeteksi konsentrasi uap asam sulfat melebihi ambang batas aman (15 ppm).",
         status: "resolved",
         lat: -6.2905,
@@ -115,11 +115,11 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-006",
         time: "09:20 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Perimeter Utara (Zona Belakang)",
         type: "Unauthorized Intrusion / Penyusup",
         category: "man_made",
-        severity: "critical",
+        severity: "catastrophic",
         description: "CCTV AI mendeteksi 1 orang tanpa seragam resmi melompati kawat berduri pagar utara.",
         status: "under_review",
         lat: -6.2900,
@@ -136,7 +136,7 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-007",
         time: "08:45 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gedung Utilitas (Panel Listrik B)",
         type: "Fire / Kebakaran",
         category: "natural_hazard",
@@ -157,7 +157,7 @@ export const initialIncidents: Incident[] = [
     {
         id: "INC-2026-008",
         time: "08:10 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gedung Produksi B (Assembly Line 1)",
         type: "Mechanical Breakdown",
         category: "operational",
@@ -173,6 +173,26 @@ export const initialIncidents: Incident[] = [
             "Tekan Emergency Stop conveyor dan pasang gembok LOTO.",
             "Ganti bearing roller yang aus dengan part cadangan dari gudang.",
             "Lakukan uji putar tanpa beban selama 10 menit sebelum restart produksi.",
+        ],
+    },
+    {
+        id: "INC-2026-009",
+        time: "07:30 WIB",
+        dayDate: "Senin, 16 Nov 2026",
+        location: "Koridor Kantor Utama",
+        type: "Housekeeping & Near-Miss",
+        category: "operational",
+        severity: "insignificant",
+        description: "Ceceran air pendingin dispenser di lantai koridor berpotensi licin.",
+        status: "resolved",
+        lat: -6.2915,
+        lng: 107.1738,
+        aiSource: "Floor Camera Vision",
+        aiConfidence: 88,
+        manualBookRefId: "SOP-OPE-NEAR-01",
+        handlingSteps: [
+            "Pasang papan tanda peringatan Wet Floor.",
+            "Panggil petugas kebersihan untuk pel kering.",
         ],
     },
 ];

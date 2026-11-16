@@ -23,7 +23,14 @@ const BASEMAPS: Record<
 };
 
 export function Basemap({ type }: { type: BasemapKey }) {
+    const map = useMap();
     const b = BASEMAPS[type];
+
+    // Guard against unmounted or destroyed map instance during page transitions
+    if (!map || !(map as any)._panes) {
+        return null;
+    }
+
     return (
         <TileLayer
             key={type}
@@ -37,21 +44,24 @@ export function Basemap({ type }: { type: BasemapKey }) {
 export function MapReady({ onReady }: { onReady?: (map: LeafletMap) => void }) {
     const map = useMap();
     useEffect(() => {
-        onReady?.(map);
-    }, [map]);
+        if (map && (map as any)._panes) {
+            onReady?.(map);
+        }
+    }, [map, onReady]);
     return null;
 }
 
 export function ViewController({ view }: { view?: MapView }) {
     const map = useMap();
     useEffect(() => {
+        if (!map || !(map as any)._panes) return;
         if (!view || view.nonce === 0) return;
         if (view.bounds) {
             map.flyToBounds(view.bounds, { padding: [48, 48], duration: 0.8 });
         } else {
             map.flyTo(view.center, view.zoom ?? map.getZoom(), { duration: 0.8 });
         }
-    }, [view?.nonce]);
+    }, [map, view?.nonce]);
     return null;
 }
 

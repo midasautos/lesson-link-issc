@@ -78,7 +78,7 @@ interface Draft {
 const emptyDraft: Draft = {
     id: null,
     name: "",
-    level: "critical",
+    level: "high",
     description: "",
     points: [],
 };
@@ -553,7 +553,7 @@ export function MapManagementView() {
                                         <Button
                                             size="sm"
                                             className="h-7 text-xs gap-1 bg-red-600 hover:bg-red-700 text-white"
-                                            onClick={() => startDrawing("critical")}
+                                            onClick={() => startDrawing("high")}
                                         >
                                             <Plus className="h-3 w-3" /> Kritis
                                         </Button>
@@ -608,15 +608,15 @@ export function MapManagementView() {
                                         Semua ({zones.length})
                                     </button>
                                     <button
-                                        onClick={() => setZoneLevelFilter("critical")}
+                                        onClick={() => setZoneLevelFilter("high")}
                                         className={cn(
                                             "rounded px-2 py-0.5 text-[11px] font-medium transition",
-                                            zoneLevelFilter === "critical"
+                                            zoneLevelFilter === "high"
                                                 ? "bg-red-500 text-white"
                                                 : "text-muted-foreground hover:bg-muted",
                                         )}
                                     >
-                                        Critical ({zones.filter((z) => z.properties.level === "critical").length})
+                                        High ({zones.filter((z) => z.properties.level === "high").length})
                                     </button>
                                     <button
                                         onClick={() => setZoneLevelFilter("moderate")}
@@ -848,10 +848,10 @@ export function MapManagementView() {
                                     <div className="grid grid-cols-2 gap-2">
                                         <button
                                             type="button"
-                                            onClick={() => setDraft((d) => ({ ...d, level: "critical" }))}
+                                            onClick={() => setDraft((d) => ({ ...d, level: "high" }))}
                                             className={cn(
                                                 "rounded-lg border p-2 text-left transition",
-                                                draft.level === "critical"
+                                                draft.level === "high"
                                                     ? "border-red-500 bg-red-500/10 text-red-700 font-bold"
                                                     : "text-muted-foreground",
                                             )}

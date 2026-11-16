@@ -113,7 +113,7 @@ export function IncidentsView() {
                 location: "Kandang Genset & Transformator",
                 type: "Fire / Kebakaran",
                 category: "natural_hazard",
-                severity: "critical",
+                severity: ("catastrophic" as const),
                 description: "Optical flame detector mendeteksi radiasi nyala api pada gardu trafo 2.",
                 status: "under_review",
                 lat: -6.2921,
@@ -131,7 +131,7 @@ export function IncidentsView() {
                 location: "Pagar Belakang Sektor Timur",
                 type: "Unauthorized Intrusion / Penyusup",
                 category: "man_made",
-                severity: "critical",
+                severity: ("catastrophic" as const),
                 description: "Radar sensor mendeteksi target manusia menaiki pagar kawat duri.",
                 status: "under_review",
                 lat: -6.2910,
@@ -293,7 +293,7 @@ export function IncidentsView() {
                             >
                                 Semua
                             </button>
-                            {(["critical", "major", "moderate", "minor"] as const).map((sev) => {
+                            {([("catastrophic" as const), "major", "moderate", "minor"] as const).map((sev) => {
                                 const conf = settings.severityConfigs?.[sev];
                                 const active = severityFilter === sev;
                                 return (

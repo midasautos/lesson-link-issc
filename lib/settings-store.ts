@@ -3,17 +3,17 @@
 import { useCallback, useEffect, useState } from "react";
 import type { HazardTypeConfig, Severity, SeverityConfigItem, SystemSettings } from "@/types";
 
-const KEY = "lessonlink:system-settings:v1";
+const KEY = "lessonlink:system-settings:v3";
 const EVENT = "lessonlink:settings-updated";
 
 export const DEFAULT_SEVERITY_CONFIGS: Record<Severity, SeverityConfigItem> = {
-    critical: {
-        key: "critical",
-        label: "Critical",
-        color: "#ef4444",
-        badgeBg: "bg-red-500",
+    catastrophic: {
+        key: "catastrophic",
+        label: "Catastrophic",
+        color: "#dc2626",
+        badgeBg: "bg-red-600",
         badgeText: "text-white",
-        description: "Ancaman langsung terhadap keselamatan jiwa, aset primer, atau integritas fasilitas utama.",
+        description: "Ancaman kritis langsung terhadap keselamatan jiwa, aset primer, atau integritas fasilitas utama.",
     },
     major: {
         key: "major",
@@ -21,7 +21,7 @@ export const DEFAULT_SEVERITY_CONFIGS: Record<Severity, SeverityConfigItem> = {
         color: "#f59e0b",
         badgeBg: "bg-amber-500",
         badgeText: "text-white",
-        description: "Gangguan signifikan terhadap operasional pabrik atau potensi bahaya eskalatif sedang.",
+        description: "Gangguan signifikan terhadap operasional pabrik atau potensi eskalasi bahaya sedang.",
     },
     moderate: {
         key: "moderate",
@@ -39,6 +39,14 @@ export const DEFAULT_SEVERITY_CONFIGS: Record<Severity, SeverityConfigItem> = {
         badgeText: "text-white",
         description: "Penyimpangan kecil, hampir celaka (near-miss), atau housekeeping rutin.",
     },
+    insignificant: {
+        key: "insignificant",
+        label: "Insignificant",
+        color: "#64748b",
+        badgeBg: "bg-slate-500",
+        badgeText: "text-white",
+        description: "Deviasi sangat kecil tanpa dampak langsung pada keselamatan atau operasional pabrik.",
+    },
 };
 
 export const DEFAULT_HAZARD_TYPES: HazardTypeConfig[] = [
@@ -46,7 +54,7 @@ export const DEFAULT_HAZARD_TYPES: HazardTypeConfig[] = [
         id: "haz-fire",
         name: "Fire / Kebakaran",
         category: "natural_hazard",
-        defaultSeverity: "critical",
+        defaultSeverity: "catastrophic",
         description: "Kebakaran struktur, percikan listrik, atau ledakan panas.",
     },
     {
@@ -60,7 +68,7 @@ export const DEFAULT_HAZARD_TYPES: HazardTypeConfig[] = [
         id: "haz-chem",
         name: "Chemical Spill / B3",
         category: "natural_hazard",
-        defaultSeverity: "critical",
+        defaultSeverity: "catastrophic",
         description: "Tumpahan zat beracun, korosif, atau uap kimia berbahaya.",
     },
     {
@@ -81,7 +89,7 @@ export const DEFAULT_HAZARD_TYPES: HazardTypeConfig[] = [
         id: "haz-intr",
         name: "Unauthorized Intrusion / Penyusup",
         category: "man_made",
-        defaultSeverity: "critical",
+        defaultSeverity: "catastrophic",
         description: "Penyusupan individu tanpa izin ke area terlarang/kritis.",
     },
     {
@@ -90,6 +98,13 @@ export const DEFAULT_HAZARD_TYPES: HazardTypeConfig[] = [
         category: "operational",
         defaultSeverity: "major",
         description: "Kegagalan mesin produksi, motor kompresor, atau conveyor.",
+    },
+    {
+        id: "haz-near",
+        name: "Housekeeping & Minor Near-Miss",
+        category: "operational",
+        defaultSeverity: "insignificant",
+        description: "Ceceran air mineral, kabel berserak, atau penataan perkakas.",
     },
 ];
 

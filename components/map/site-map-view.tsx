@@ -2,7 +2,7 @@
 
 import "leaflet/dist/leaflet.css";
 
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import type { Map as LeafletMap } from "leaflet";
 import { MapContainer, Marker, Popup, useMap } from "react-leaflet";
 
@@ -23,6 +23,7 @@ export function SiteViewSync({ lat, lng, zoom }: { lat: number; lng: number; zoo
     const map = useMap();
 
     useEffect(() => {
+        if (!map || !(map as any)._panes) return;
         map.setView([lat, lng], zoom);
     }, [map, lat, lng, zoom]);
 
@@ -30,24 +31,44 @@ export function SiteViewSync({ lat, lng, zoom }: { lat: number; lng: number; zoo
 }
 
 export default function SiteMapView({ site, incidents, onReady }: Props) {
+    const [mounted, setMounted] = useState(false);
+    const [mapKey] = useState(() => `sitemap-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => {
+            setMounted(false);
+        };
+    }, []);
+
     const zones = site.zones.features;
 
     const markers = useMemo(() =>
         incidents.map((i) => {
             const resolved = i.status === "resolved";
+            const color = SEVERITY_COLORS[i.severity] ?? "#f59e0b";
             return {
-            incident: i,
-            icon: resolved
-                ? pinIcon(SEVERITY_COLORS.minor, "✓")
-                : pinIcon(SEVERITY_COLORS[i.severity], "!"),
-            zone: findZoneAt({ lat: i.lat, lng: i.lng }, zones),
+                incident: i,
+                icon: resolved
+                    ? pinIcon(SEVERITY_COLORS.minor, "✓")
+                    : pinIcon(color, "!"),
+                zone: findZoneAt({ lat: i.lat, lng: i.lng }, zones),
             };
         }),
         [incidents, zones],
     );
 
+    if (!mounted) {
+        return (
+            <div className="grid h-full w-full place-items-center bg-muted text-sm text-muted-foreground">
+                Memuat peta fasilitas…
+            </div>
+        );
+    }
+
     return (
         <MapContainer
+            key={mapKey}
             center={[site.center.lat, site.center.lng]}
             zoom={site.zoom}
             zoomControl={false}
@@ -69,12 +90,13 @@ export default function SiteMapView({ site, incidents, onReady }: Props) {
                             <div>{i.description}</div>
 
                             <div className="text-xs text-slate-500">
-                                {i.location} · {i.time} WIB
+                                {i.location} · {i.time}
                             </div>
 
                             {zone && (
                                 <div className="text-xs">
-                                    Zone: <b>{zone.properties.name}</b> ({ZONE_STYLE[zone.properties.level].label})
+                                    Zone: <b>{zone.properties.name}</b> (
+                                    {ZONE_STYLE[zone.properties.level]?.label ?? "Zone"})
                                 </div>
                             )}
                         </div>

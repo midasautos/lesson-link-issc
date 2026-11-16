@@ -1,7 +1,7 @@
 import { SEVERITY_COLORS, SEVERITY_LABEL } from "@/lib/severity";
 import type { Incident, Severity, TrendPoint } from "@/types";
 
-const ORDER: Severity[] = ["critical", "major", "minor"];
+const ORDER: Severity[] = ["catastrophic", "major", "moderate", "minor", "insignificant"];
 
 export function summarize(incidents: Incident[]) {
     const total = incidents.length;
@@ -9,8 +9,8 @@ export function summarize(incidents: Incident[]) {
         const count = incidents.filter((i) => i.severity === severity).length;
         return {
             severity,
-            label: SEVERITY_LABEL[severity],
-            color: SEVERITY_COLORS[severity],
+            label: SEVERITY_LABEL[severity] || severity,
+            color: SEVERITY_COLORS[severity] || "#94a3b8",
             count,
             pct: total ? (count / total) * 100 : 0,
         };
@@ -28,19 +28,23 @@ export function buildTrend(
     history: TrendPoint[],
     now: Date,
 ) {
-    const todayCounts = {
+    const todayCounts: TrendPoint = {
         daysAgo: 0,
+        insignificant: incidents.filter((i) => i.severity === "insignificant").length,
         minor: incidents.filter((i) => i.severity === "minor").length,
+        moderate: incidents.filter((i) => i.severity === "moderate").length,
         major: incidents.filter((i) => i.severity === "major").length,
-        critical: incidents.filter((i) => i.severity === "critical").length,
+        catastrophic: incidents.filter((i) => i.severity === "catastrophic").length,
     };
 
     return [...history, todayCounts]
         .sort((a, b) => b.daysAgo - a.daysAgo)
         .map((p) => ({
             label: dayLabel.format(new Date(now.getTime() - p.daysAgo * 86_400_000)),
+            insignificant: p.insignificant,
             minor: p.minor,
+            moderate: p.moderate,
             major: p.major,
-            critical: p.critical,
+            catastrophic: p.catastrophic,
         }));
 }

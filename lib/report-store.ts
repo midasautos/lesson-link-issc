@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import type { IncidentStatus, Report } from "@/types";
 
-const KEY = "lessonlink:reports:v2";
+const KEY = "lessonlink:reports:v3";
 const EVENT = "lessonlink:reports-updated";
 
 export const initialReports: Report[] = [
     {
         id: "REP-2026-101",
         time: "14:10 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gerbang Timur (Pos 2)",
         type: "Protester / Demonstrasi",
         category: "man_made",
@@ -39,7 +39,7 @@ export const initialReports: Report[] = [
     {
         id: "REP-2026-102",
         time: "13:30 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Kantin Karyawan & Koridor Timur",
         type: "Damage Property / Vandalisme",
         category: "man_made",
@@ -68,7 +68,7 @@ export const initialReports: Report[] = [
     {
         id: "REP-2026-103",
         time: "11:45 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Area Parkir Logistik & Kontainer",
         type: "Flood / Banjir",
         category: "natural_hazard",
@@ -96,11 +96,11 @@ export const initialReports: Report[] = [
     {
         id: "REP-2026-104",
         time: "10:15 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Tank Farm Area Barat",
         type: "Chemical Spill / B3",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         description: "Mencium bau menyengat seperti gas amonia di dekat flange pipa transfer T-02. Terlihat tetesan cairan di lantai bunding.",
         status: "under_review",
         reporter: {
@@ -125,11 +125,11 @@ export const initialReports: Report[] = [
     {
         id: "REP-2026-105",
         time: "08:30 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gedung Admin Lantai 2",
         type: "Unauthorized Intrusion / Penyusup",
         category: "man_made",
-        severity: "major",
+        severity: "catastrophic",
         description: "Ada tamu vendor tanpa tanda pengenal (visitor badge) berada di ruang server tanpa didampingi staf IT.",
         status: "resolved",
         reporter: {
@@ -154,11 +154,11 @@ export const initialReports: Report[] = [
     {
         id: "REP-2026-106",
         time: "07:50 WIB",
-        dayDate: "Minggu, 15 Nov 2026",
+        dayDate: "Senin, 16 Nov 2026",
         location: "Gudang Bahan Kimia",
         type: "Fire / Kebakaran",
         category: "natural_hazard",
-        severity: "critical",
+        severity: "catastrophic",
         description: "Terdengar bunyi mendesis kencang dan ada asap putih tipis dari regulator tabung gas nitrogen.",
         status: "under_review",
         reporter: {
@@ -177,6 +177,34 @@ export const initialReports: Report[] = [
                 "Evakuasi semua pekerja dari gudang bahan kimia.",
                 "Tutup katup utama tabung menggunakan sarung tangan cryo.",
                 "Siagakan APAR bubuk kering 6kg di luar pintu gudang.",
+            ],
+        },
+    },
+    {
+        id: "REP-2026-107",
+        time: "07:15 WIB",
+        dayDate: "Senin, 16 Nov 2026",
+        location: "Lorong Assembly 1",
+        type: "Housekeeping & Near-Miss",
+        category: "operational",
+        severity: "insignificant",
+        description: "Kardus bekas kemasan part menumpuk di dekat pintu darurat blok A, sedikit menghalangi jalan.",
+        status: "resolved",
+        reporter: {
+            name: "Yusuf Maulana",
+            role: "Operator Packaging",
+            contact: "+62 813-4455-6677",
+            avatar: "YM",
+        },
+        lat: -6.2905,
+        lng: 107.1720,
+        aiRecommendation: {
+            summary: "AI menyarankan pemindahan segera kardus ke tempat pembuangan sementara tanpa eskalasi darurat.",
+            confidence: 99,
+            manualBookRefId: "SOP-OPE-NEAR-01",
+            suggestedActions: [
+                "Pindahkan kardus bekas ke troli penampungan karton.",
+                "Pastikan jalur pintu darurat bebas hambatan 1 meter.",
             ],
         },
     },

@@ -183,7 +183,7 @@ export function SettingsView() {
 
                 <CardContent className="p-4 pt-0 space-y-4">
                     <div className="grid gap-4 md:grid-cols-2">
-                        {(["critical", "major", "moderate", "minor"] as const).map((key) => {
+                        {(Object.keys(severities) as Severity[]).map((key) => {
                             const conf = severities[key];
                             return (
                                 <div
@@ -334,7 +334,7 @@ export function SettingsView() {
                                     value={newHazSev}
                                     onChange={(e) => setNewHazSev(e.target.value as Severity)}
                                 >
-                                    {(["critical", "major", "moderate", "minor"] as const).map((s) => (
+                                    {(["catastrophic", "major", "moderate", "minor", "insignificant"] as const).map((s) => (
                                         <option key={s} value={s}>
                                             {severities[s]?.label || s}
                                         </option>

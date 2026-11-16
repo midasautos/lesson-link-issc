@@ -188,7 +188,7 @@ export function CreateReportModal({ open, onClose, onSubmit }: Props) {
                                     value={severity}
                                     onChange={(e) => setSeverity(e.target.value as Severity)}
                                 >
-                                    {(["critical", "major", "moderate", "minor"] as const).map((s) => (
+                                    {(["catastrophic", "major", "moderate", "minor", "insignificant"] as const).map((s) => (
                                         <option key={s} value={s}>
                                             {settings.severityConfigs?.[s]?.label || s.toUpperCase()}
                                         </option>

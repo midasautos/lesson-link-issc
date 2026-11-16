@@ -84,14 +84,14 @@ export function IncidentDetailModal({ incident, onClose, onStatusChange }: Props
 
                 <CardContent className="p-5 space-y-5">
                     {/* AI Detection Card */}
-                    <div className="rounded-xl border border-indigo-200/80 bg-indigo-50/60 p-3.5 dark:border-indigo-900/50 dark:bg-indigo-950/30">
+                    <div className="rounded-xl border border-primary/80 bg-primary/60 p-3.5 dark:border-primary/50 dark:bg-primary/30">
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider">
+                            <div className="flex items-center gap-2 text-primary dark:text-primary text-xs font-bold uppercase tracking-wider">
                                 <Bot className="h-4 w-4" />
                                 <span>Prediksi & Monitoring Otomatis AI</span>
                             </div>
                             {incident.aiConfidence && (
-                                <Badge className="bg-indigo-600 text-white text-[11px] font-semibold">
+                                <Badge className="bg-primary text-white text-[11px] font-semibold">
                                     Confidence: {incident.aiConfidence}%
                                 </Badge>
                             )}

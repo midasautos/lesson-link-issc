@@ -5,10 +5,11 @@ import type {
 } from "geojson";
 
 export const severityValue = {
-    critical: "destructive",
+    catastrophic: "destructive",
     major: "warning",
     moderate: "secondary",
-    minor: "outline"
+    minor: "outline",
+    insignificant: "ghost",
 } as const;
 
 export type Severity = keyof typeof severityValue;
@@ -112,8 +113,9 @@ export interface SystemSettings {
 }
 
 export const zoneLevelValue = {
-    critical: "destructive",
-    moderate: "secondary"
+    high: "destructive",
+    moderate: "warning",
+    low: "outline",
 } as const;
 
 export type ZoneLevel = keyof typeof zoneLevelValue;
@@ -142,9 +144,11 @@ export interface SiteConfig {
 
 export interface TrendPoint {
     daysAgo: number;
+    insignificant: number;
     minor: number;
+    moderate: number;
     major: number;
-    critical: number;
+    catastrophic: number;
 }
 
 export type BasemapKey = "satellite" | "streets";

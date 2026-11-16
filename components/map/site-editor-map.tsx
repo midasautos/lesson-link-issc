@@ -2,7 +2,7 @@
 
 import "leaflet/dist/leaflet.css";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import type { Map as LeafletMap } from "leaflet";
 import { MapContainer, Marker, ZoomControl } from "react-leaflet";
 
@@ -59,10 +59,29 @@ export default function SiteEditorMap({
     view,
     onReady,
 }: Props) {
+    const [mounted, setMounted] = useState(false);
+    const [mapKey] = useState(() => `editor-map-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => {
+            setMounted(false);
+        };
+    }, []);
+
     const icon = useMemo(() => centerIcon(), []);
+
+    if (!mounted) {
+        return (
+            <div className="grid h-full w-full place-items-center bg-muted text-sm text-muted-foreground">
+                Memuat peta editor…
+            </div>
+        );
+    }
 
     return (
         <MapContainer
+            key={mapKey}
             center={initialCenter}
             zoom={initialZoom}
             zoomControl={false}

@@ -26,7 +26,7 @@ export function SiteOverviewCard() {
 
     return (
         <Card className="overflow-hidden">
-            <CardHeader className="flex-row items-center justify-between space-y-0 p-4">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4">
                 <CardTitle className="flex items-center gap-2 text-base">
                     <MapPin className="h-5 w-5 text-primary" />
 
@@ -81,7 +81,7 @@ export function SiteOverviewCard() {
                     />
 
                     <div className="absolute bottom-3 left-3 z-[900] space-y-1 rounded-lg bg-white/90 px-3 py-2 text-[11px] shadow backdrop-blur">
-                        <LegendRow color={ZONE_STYLE.critical.color} label="Critical zone" />
+                        <LegendRow color={ZONE_STYLE.high.color} label="High zone" />
                         
                         <LegendRow
                             color={ZONE_STYLE.moderate.color}
@@ -89,7 +89,7 @@ export function SiteOverviewCard() {
                             dashed
                         />
 
-                        <LegendRow color={SEVERITY_COLORS.critical} label="Open incident" dot />
+                        <LegendRow color={SEVERITY_COLORS.catastrophic} label="Open incident" dot />
 
                         <LegendRow color={SEVERITY_COLORS.minor} label="Resolved" dot />
                     </div>

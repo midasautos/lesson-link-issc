@@ -210,7 +210,7 @@ export function ReportsView() {
                             >
                                 Semua
                             </button>
-                            {(["critical", "major", "moderate", "minor"] as const).map((sev) => {
+                            {(["insignificant", "minor", "moderate", "major", "catastrophic"] as const).map((sev) => {
                                 const conf = settings.severityConfigs?.[sev];
                                 const active = severityFilter === sev;
                                 return (
@@ -242,7 +242,7 @@ export function ReportsView() {
             </Card>
 
             {/* Reports Table with SENDER / REPORTER Column */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden border border-blue-800 rounded-lg shadow-md">
                 <Table>
                     <TableHeader className="bg-muted/50">
                         <TableRow className="hover:bg-transparent">

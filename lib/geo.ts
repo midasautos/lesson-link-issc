@@ -42,7 +42,7 @@ export function pointInPolygon(p: LatLng, poly: LatLng[]): boolean {
 /** Zona yang memuat titik. Kalau overlap, zona critical diprioritaskan. */
 export function findZoneAt(p: LatLng, zones: ZoneFeature[]) {
     const hits = zones.filter((z) => pointInPolygon(p, zoneLatLngs(z)));
-    return hits.find((z) => z.properties.level === "critical") ?? hits[0];
+    return hits.find((z) => z.properties.level === "high") ?? hits[0];
 }
 
 export function boundsOf(points: LatLng[]): [[number, number], [number, number]] {
@@ -180,7 +180,7 @@ export function parseSiteGeoJSON(text: string): ImportResult {
         usedIds.add(id);
 
         const level: ZoneLevel =
-            p.level === "critical" || p.level === "moderate" ? p.level : "moderate";
+            p.level === "high" || p.level === "moderate" ? p.level : "moderate";
 
         zones.push({
             type: "Feature",

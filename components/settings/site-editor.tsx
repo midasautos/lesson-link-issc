@@ -145,8 +145,8 @@ function EditorInner({
         [config, saved],
     );
 
-    const criticalCount = zones.filter((z) => z.properties.level === "critical").length;
-    const moderateCount = zones.length - criticalCount;
+    const highCount = zones.filter((z) => z.properties.level === "high").length;
+    const moderateCount = zones.length - highCount;
 
     const flash = (type: "ok" | "error", text: string) => setMessage({ type, text });
 
@@ -213,7 +213,7 @@ function EditorInner({
 
     const startDraw = () => {
         setSelectedId(null);
-        setDraft({ id: null, points: [], name: "", level: "critical", description: "" });
+        setDraft({ id: null, points: [], name: "", level: "high", description: "" });
         setMode("draw");
     };
 
@@ -297,7 +297,7 @@ function EditorInner({
                 ...z,
                 properties: {
                     ...z.properties,
-                    level: z.properties.level === "critical" ? "moderate" : "critical",
+                    level: z.properties.level === "high" ? "moderate" : "high",
                 },
                 }
             : z,
@@ -590,7 +590,7 @@ function EditorInner({
                             <div className="flex items-center justify-between pt-1 text-xs text-muted-foreground">
                                 <span>{zones.length} area(s)</span>
                                 <span>
-                                    {criticalCount} critical · {moderateCount} moderate
+                                    {highCount} high · {moderateCount} moderate
                                 </span>
                             </div>
 
@@ -718,7 +718,7 @@ function EditorInner({
                             onSelect={setSelectedId}
                             onMapClick={handleMapClick}
                             draftPoints={draft ? draft.points : null}
-                            draftLevel={draft?.level ?? "critical"}
+                            draftLevel={draft?.level ?? "high"}
                             onMovePoint={movePoint}
                             centerMarker={parsed ? { lat: parsed.lat, lng: parsed.lng } : null}
                             view={view}
@@ -769,7 +769,7 @@ function StepTitle({ n, children }: { n: number; children: ReactNode }) {
 
 const LEVEL_OPTIONS: { value: ZoneLevel; title: string; text: string }[] = [
     {
-        value: "critical",
+        value: "high",
         title: "Critical",
         text: "Contains key assets. Incidents here deserve top priority.",
     },
